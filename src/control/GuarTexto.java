@@ -18,7 +18,7 @@ public class GuarTexto implements MouseListener {
    PreparedStatement s;
    String user = "root";
    String password = "";
-   String url = "jdbc:mysql://localhost:3306/letras";
+   String url = "jdbc:mysql://localhost:3306/base_texto";
    String driver= "com.mysql.jdbc.Driver";
     
    
@@ -30,16 +30,19 @@ public class GuarTexto implements MouseListener {
 
  
     @Override
-    public void mouseClicked(MouseEvent e) {
-         Coneccion conn = new Coneccion("localhost", "root", "", "Base_Letras");
+    public void mouseClicked(MouseEvent evt) {
+         Coneccion conn = new Coneccion("localhost", "root", "", "base_texto");
      System.out.println("Guardadisimo Papa");
             try {
             Class.forName(driver);
+            System.out.println("Guardadisimo Papa");
             conect=DriverManager.getConnection(url,user,password);
-            s=conect.prepareStatement("insert into letras (Texto_Letras) values (?)");
+            System.out.println("Guardadisimo Papa2");
+            s=conect.prepareStatement("insert into texto (texto) values (?)");
+            System.out.println("Guardadisimo Papa3");
             s.setString(1, texto.getText());
             s.executeUpdate();
-            
+            System.out.println(" Recontra Guardadisimo Papa");
             JOptionPane.showMessageDialog(null, "texto guardado exitosamente");
         } 
         catch(ClassNotFoundException e){
